@@ -73,25 +73,21 @@ public class ImageProcessor {
         int height = originalImage.getHeight();
         BufferedImage processedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
-        // Iteracja po każdym pikselu obrazu
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                // Obliczanie odpowiadających sobie punktów po obrocie o 180 stopni
+                // Obliczanie punktów po obrocie o 180 stopni
                 int rotatedX = width - x - 1;
                 int rotatedY = height - y - 1;
 
                 int rgb = originalImage.getRGB(x, y);
                 Color color = new Color(rgb);
 
-                // Przekształcenie: zamiana składowej zielonej na niebieską
                 int red = color.getRed();
-                int green = color.getBlue(); // Używamy składowej niebieskiej zamiast zielonej
-                int blue = color.getGreen(); // Używamy składowej zielonej zamiast niebieskiej
+                int green = color.getBlue();
+                int blue = color.getGreen();
 
-                // Tworzenie nowego koloru z przekształconymi składowymi
+                // Tworzenie nowego koloru
                 Color processedColor = new Color(red, green, blue);
-
-                // Ustawianie przekształconego koloru na obrazie wynikowym
                 processedImage.setRGB(rotatedX, rotatedY, processedColor.getRGB());
             }
         }
